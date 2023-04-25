@@ -1,3 +1,67 @@
-body {
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
   background-color: #222;
+  font-family: "Press Start 2P", sans-serif;
+}
+
+body {
+  height: 100vh;
+}
+
+:root {
+  --text-color: #f1f3f5;
+}
+
+/* header */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 6rem;
+}
+
+.heading {
+  color: var(--text-color);
+  font-size: 5rem;
+}
+
+/* main */
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.play-area {
+  width: 140rem;
+  height: 75rem;
+  background-color: red;
+
+  margin-top: 10rem;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.human-box {
+  background-color: blue;
+  width: 50%;
+  height: 100%;
+  border-right: 2px solid var(--text-color);
+}
+
+.ai-box {
+  background-color: green;
+  width: 50%;
+  height: 100%;
+  border-left: 2px solid var(--text-color);
 }
