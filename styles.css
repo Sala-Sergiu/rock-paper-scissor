@@ -51,6 +51,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
+/* Human box */
 
 .human-box {
   background-color: blue;
@@ -58,6 +59,66 @@ body {
   height: 100%;
   border-right: 2px solid var(--text-color);
 }
+
+.box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 2rem 1.4rem;
+}
+
+.player {
+  font-size: 3.5rem;
+}
+
+.score {
+  font-size: 3.5rem;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.select-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rem;
+
+  padding-top: 7rem;
+}
+
+.rock {
+}
+
+.paper {
+}
+
+.scissors {
+}
+
+.btn {
+  display: inline-block;
+  font-family: inherit;
+
+  width: 10rem;
+  height: 10rem;
+  border: none;
+  background-color: orangered;
+}
+
+.image-box {
+}
+
+.image {
+  max-width: 30rem;
+  max-height: 30rem;
+}
+
+/* ai box */
 
 .ai-box {
   background-color: green;
