@@ -17,18 +17,40 @@
     <header class="header">
       <h1 class="heading">Rock Paper Scissor</h1>
     </header>
+    <div class="game-rules-container">
+      <p class="game-rules">First to reach 5 wins the game</p>
+      <button class="try-again">Try again</button>
+    </div>
     <main class="main">
       <div class="play-area">
         <div class="human-box">
           <div class="box-header">
-            <h1 class="player">Sergiu</h1>
-            <p class="score">4</p>
+            <h1 class="player">Player</h1>
+            <p class="score">0</p>
           </div>
           <div class="buttons-container">
             <div class="select-buttons">
-              <button class="rock btn">Rock</button>
-              <button class="paper btn">Paper</button>
-              <button class="scissors btn">Scissors</button>
+              <button class="rock-btn btn">
+                <img
+                  src="./images/rock.png"
+                  alt="Image of a closed fist"
+                  class="rock-img"
+                />
+              </button>
+              <button class="paper-btn btn">
+                <img
+                  src="./images/paper.png"
+                  alt="image of a open hand"
+                  class="paper-img"
+                />
+              </button>
+              <button class="scissors-btn btn">
+                <img
+                  src="./images/scissors.png"
+                  alt="image of hand making a scissors shape"
+                  class="scissors-img"
+                />
+              </button>
             </div>
             <div class="image-box">
               <img
@@ -39,7 +61,44 @@
             </div>
           </div>
         </div>
-        <div class="ai-box"></div>
+        <div class="ai-box">
+          <div class="box-header">
+            <p class="score-ai">0</p>
+            <h1 class="player">AI</h1>
+          </div>
+          <div class="buttons-container">
+            <div class="image-box">
+              <img
+                src="./images/scissors-mirror.png"
+                alt="image of paper"
+                class="image-ai"
+              />
+            </div>
+            <div class="select-buttons">
+              <button class="rock-btn btn">
+                <img
+                  src="./images/rock-mirror.png"
+                  alt="Image of a closed fist"
+                  class="rock-img"
+                />
+              </button>
+              <button class="paper-btn btn">
+                <img
+                  src="./images/paper-mirror.png"
+                  alt="image of a open hand"
+                  class="paper-img"
+                />
+              </button>
+              <button class="scissors-btn btn">
+                <img
+                  src="./images/scissors-mirror.png"
+                  alt="image of hand making a scissors shape"
+                  class="scissors-img"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <script src="script.js"></script>

@@ -20,6 +20,29 @@ body {
   --text-color: #f1f3f5;
 }
 
+.game-rules-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 140rem;
+
+  margin: 0 auto;
+  color: #f1f3f5;
+}
+
+.game-rules {
+  font-size: 2rem;
+}
+
+.try-again {
+  font-family: inherit;
+  border: none;
+  border-radius: 5px;
+  padding: 1.6rem 2.2rem;
+  letter-spacing: 6px;
+}
+
 /* header */
 
 .header {
@@ -33,6 +56,7 @@ body {
 .heading {
   color: var(--text-color);
   font-size: 5rem;
+  margin-bottom: 8rem;
 }
 
 /* main */
@@ -46,7 +70,7 @@ body {
   height: 75rem;
   background-color: red;
 
-  margin-top: 10rem;
+  margin-top: 2rem;
 
   display: flex;
   justify-content: space-between;
@@ -66,6 +90,7 @@ body {
   align-items: center;
 
   padding: 2rem 1.4rem;
+  margin-bottom: 7rem;
 }
 
 .player {
@@ -73,6 +98,10 @@ body {
 }
 
 .score {
+  font-size: 3.5rem;
+}
+
+.score-ai {
   font-size: 3.5rem;
 }
 
@@ -86,18 +115,23 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   gap: 10rem;
-
-  padding-top: 7rem;
 }
 
-.rock {
+.rock-img {
+  width: 9rem;
+  height: 9rem;
 }
 
-.paper {
+.paper-img {
+  width: 9rem;
+  height: 9rem;
 }
 
-.scissors {
+.scissors-img {
+  width: 9rem;
+  height: 9rem;
 }
 
 .btn {
@@ -114,6 +148,11 @@ body {
 }
 
 .image {
+  max-width: 30rem;
+  max-height: 30rem;
+}
+
+.image-ai {
   max-width: 30rem;
   max-height: 30rem;
 }
