@@ -33,44 +33,58 @@ const getComputerChoice = function () {
   return random;
 };
 
-rock.addEventListener("click", function () {
-  const random = getComputerChoice();
-  let choice = "rock";
-  console.log(`${choice} was selected`);
-
-  if (choice === "rock") {
-    image.src = `./images/${choice}.png`;
-  }
-
+const rockLogic = function (random) {
   if (random === 3) {
     playerScore++;
     Number((score.textContent = playerScore));
-
-    console.log("player score", playerScore);
-    console.log("---score", +score.textContent);
   } else if (random === 2) {
     aiScore++;
     Number((scoreAi.textContent = aiScore));
-
-    console.log("aiscore", playerScore);
-    console.log("---score", +score.textContent);
   } else {
     return;
   }
-});
+};
 
-paper.addEventListener("click", function () {
-  let choice = "paper";
-  console.log(`${choice} was selected`);
-  if (choice === "paper") {
-    image.src = `./images/${choice}.png`;
+const paperLogic = function (random) {
+  if (random === 3) {
+    aiScore++;
+    Number((scoreAi.textContent = aiScore));
+  } else if (random === 2) {
+    return;
+  } else {
+    playerScore++;
+    Number((score.textContent = playerScore));
   }
-});
+};
 
-scissors.addEventListener("click", function () {
-  let choice = "scissors";
-  console.log(`${choice} was selected`);
-  if (choice === "scissors") {
-    image.src = `./images/${choice}.png`;
+const scissorsLogic = function (random) {
+  if (random === 3) {
+    return;
+  } else if (random === 2) {
+    playerScore++;
+    Number((score.textContent = playerScore));
+  } else {
+    aiScore++;
+    Number((scoreAi.textContent = aiScore));
   }
-});
+};
+
+const refactored = function (logic, string) {
+  return function () {
+    const random = getComputerChoice();
+    // let choice = string;
+    console.log(`${string} was selected`);
+
+    if (string) {
+      image.src = `./images/${string}.png`;
+    }
+
+    logic(random);
+  };
+};
+
+rock.addEventListener("click", refactored(rockLogic, "rock"));
+
+paper.addEventListener("click", refactored(paperLogic, "paper"));
+
+scissors.addEventListener("click", refactored(scissorsLogic, "scissors"));
