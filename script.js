@@ -8,12 +8,11 @@ let scoreAi = document.querySelector(".score-ai");
 const image = document.querySelector(".image");
 const imageAi = document.querySelector(".image-ai");
 
-let playerScore = "";
-let aiScore = "";
+const humanWin = document.querySelector(".winner-human-text");
+const aiWin = document.querySelector(".winner-ai-text");
 
-// console.log("default", score);
-// console.log("playerscore", playerScore);
-// console.log("airscore", aiScore);
+let playerScore = 0;
+let aiScore = 0;
 
 const getComputerChoice = function () {
   const random = Math.trunc(Math.random() * 3) + 1;
@@ -34,38 +33,67 @@ const getComputerChoice = function () {
 };
 
 const rockLogic = function (random) {
-  if (random === 3) {
-    playerScore++;
-    Number((score.textContent = playerScore));
-  } else if (random === 2) {
-    aiScore++;
-    Number((scoreAi.textContent = aiScore));
-  } else {
-    return;
+  if (playerScore < 5 && aiScore < 5) {
+    if (random === 3) {
+      const x = playerScore++;
+      Number((score.textContent = playerScore));
+    } else if (random === 2) {
+      aiScore++;
+      Number((scoreAi.textContent = aiScore));
+    } else {
+      return;
+    }
+
+    if (playerScore === 5) {
+      humanWin.classList.remove("hidden");
+    }
+    if (aiScore === 5) {
+      aiWin.classList.remove("hidden");
+    }
+    console.log(playerScore);
+    console.log(aiScore);
   }
 };
 
 const paperLogic = function (random) {
-  if (random === 3) {
-    aiScore++;
-    Number((scoreAi.textContent = aiScore));
-  } else if (random === 2) {
-    return;
-  } else {
-    playerScore++;
-    Number((score.textContent = playerScore));
+  if (playerScore < 5 && aiScore < 5) {
+    if (random === 3) {
+      aiScore++;
+      aiScore = Number((scoreAi.textContent = aiScore));
+    } else if (random === 2) {
+      return;
+    } else {
+      playerScore++;
+      Number((score.textContent = playerScore));
+    }
+
+    if (playerScore === 5) {
+      humanWin.classList.remove("hidden");
+    }
+    if (aiScore === 5) {
+      aiWin.classList.remove("hidden");
+    }
   }
 };
 
 const scissorsLogic = function (random) {
-  if (random === 3) {
-    return;
-  } else if (random === 2) {
-    playerScore++;
-    Number((score.textContent = playerScore));
-  } else {
-    aiScore++;
-    Number((scoreAi.textContent = aiScore));
+  if (playerScore < 5 && aiScore < 5) {
+    if (random === 3) {
+      return;
+    } else if (random === 2) {
+      playerScore++;
+      Number((score.textContent = playerScore));
+    } else {
+      aiScore++;
+      Number((scoreAi.textContent = aiScore));
+    }
+
+    if (playerScore === 5) {
+      humanWin.classList.remove("hidden");
+    }
+    if (aiScore === 5) {
+      aiWin.classList.remove("hidden");
+    }
   }
 };
 

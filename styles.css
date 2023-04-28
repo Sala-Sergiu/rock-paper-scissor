@@ -90,7 +90,41 @@ body {
   align-items: center;
 
   padding: 2rem 1.4rem;
-  margin-bottom: 7rem;
+  margin-bottom: 3rem;
+}
+
+.box-header-ai {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 2rem 1.4rem;
+  margin-bottom: 3rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.winner-human-box {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 3rem;
+  height: 4rem;
+}
+.winner-human-text {
+  font-size: 4rem;
+}
+.winner-ai-box {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 3rem;
+  height: 4rem;
+}
+.winner-ai-text {
+  font-size: 4rem;
 }
 
 .player {
