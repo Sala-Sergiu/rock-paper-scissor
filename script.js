@@ -1,8 +1,8 @@
 const rock = document.querySelector(".rock-btn");
 const paper = document.querySelector(".paper-btn");
 const scissors = document.querySelector(".scissors-btn");
-
 const tryAgain = document.querySelector(".try-again");
+
 let score = document.querySelector(".score");
 let scoreAi = document.querySelector(".score-ai");
 const image = document.querySelector(".image");
@@ -110,6 +110,17 @@ const refactored = function (logic, string) {
     logic(random);
   };
 };
+
+const resetGame = function () {
+  playerScore = 0;
+  aiScore = 0;
+  score.textContent = 0;
+  scoreAi.textContent = 0;
+  humanWin.classList.add("hidden");
+  aiWin.classList.add("hidden");
+};
+
+tryAgain.addEventListener("click", resetGame);
 
 rock.addEventListener("click", refactored(rockLogic, "rock"));
 

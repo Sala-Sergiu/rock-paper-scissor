@@ -18,6 +18,7 @@ body {
 
 :root {
   --text-color: #f1f3f5;
+  --background-color: #333;
 }
 
 .game-rules-container {
@@ -28,7 +29,7 @@ body {
   width: 140rem;
 
   margin: 0 auto;
-  color: #f1f3f5;
+  color: var(--text-color);
 }
 
 .game-rules {
@@ -68,7 +69,7 @@ body {
 .play-area {
   width: 140rem;
   height: 75rem;
-  background-color: red;
+  background-color: var(--background-color);
 
   margin-top: 2rem;
 
@@ -78,7 +79,8 @@ body {
 /* Human box */
 
 .human-box {
-  background-color: blue;
+  background-color: var(--background-color);
+
   width: 50%;
   height: 100%;
   border-right: 2px solid var(--text-color);
@@ -115,6 +117,7 @@ body {
 }
 .winner-human-text {
   font-size: 4rem;
+  color: var(--text-color);
 }
 .winner-ai-box {
   display: flex;
@@ -125,17 +128,22 @@ body {
 }
 .winner-ai-text {
   font-size: 4rem;
+  color: var(--text-color);
 }
 
 .player {
   font-size: 3.5rem;
+  color: var(--text-color);
 }
 
 .score {
+  color: var(--text-color);
+
   font-size: 3.5rem;
 }
 
 .score-ai {
+  color: var(--text-color);
   font-size: 3.5rem;
 }
 
@@ -151,6 +159,10 @@ body {
   align-items: center;
   justify-content: space-around;
   gap: 10rem;
+}
+
+.select-buttons button {
+  cursor: pointer;
 }
 
 .rock-img {
@@ -175,7 +187,7 @@ body {
   width: 10rem;
   height: 10rem;
   border: none;
-  background-color: orangered;
+  background-color: var(--background-color);
 }
 
 .image-box {
@@ -194,7 +206,8 @@ body {
 /* ai box */
 
 .ai-box {
-  background-color: green;
+  background-color: var(--background-color);
+
   width: 50%;
   height: 100%;
   border-left: 2px solid var(--text-color);
