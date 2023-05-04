@@ -1,129 +1,86 @@
-const rock = document.querySelector(".rock-btn");
-const paper = document.querySelector(".paper-btn");
-const scissors = document.querySelector(".scissors-btn");
-const tryAgain = document.querySelector(".try-again");
-
-let score = document.querySelector(".score");
-let scoreAi = document.querySelector(".score-ai");
-const image = document.querySelector(".image");
-const imageAi = document.querySelector(".image-ai");
-
-const humanWin = document.querySelector(".winner-human-text");
-const aiWin = document.querySelector(".winner-ai-text");
+const elements = {
+  rock: document.querySelector(".rock-btn"),
+  paper: document.querySelector(".paper-btn"),
+  scissors: document.querySelector(".scissors-btn"),
+  tryAgain: document.querySelector(".try-again"),
+  score: document.querySelector(".score"),
+  scoreAi: document.querySelector(".score-ai"),
+  image: document.querySelector(".image"),
+  imageAi: document.querySelector(".image-ai"),
+  humanWin: document.querySelector(".winner-human-text"),
+  aiWin: document.querySelector(".winner-ai-text"),
+};
 
 let playerScore = 0;
 let aiScore = 0;
 
 const getComputerChoice = function () {
-  const random = Math.trunc(Math.random() * 3) + 1;
+  const random = Math.floor(Math.random() * 3) + 1;
   // 1 = rock
   // 2 = paper
   // 3 = scissors
-  if (random === 1) {
-    let choice = "rock";
-    imageAi.src = `./images/${choice}-mirror.png`;
-  } else if (random === 2) {
-    let choice = "paper";
-    imageAi.src = `./images/${choice}-mirror.png`;
-  } else {
-    let choice = "scissors";
-    imageAi.src = `./images/${choice}-mirror.png`;
-  }
+  const choice = random === 1 ? "rock" : random === 2 ? "paper" : "scissors";
+  elements.imageAi.src = `./images/${choice}-mirror.png`;
   return random;
 };
 
-const rockLogic = function (random) {
-  if (playerScore < 5 && aiScore < 5) {
-    if (random === 3) {
-      const x = playerScore++;
-      Number((score.textContent = playerScore));
-    } else if (random === 2) {
-      aiScore++;
-      Number((scoreAi.textContent = aiScore));
-    } else {
-      return;
-    }
+const updateScores = function () {
+  elements.score.textContent = playerScore;
+  elements.scoreAi.textContent = aiScore;
+};
 
-    if (playerScore === 5) {
-      humanWin.classList.remove("hidden");
-    }
-    if (aiScore === 5) {
-      aiWin.classList.remove("hidden");
-    }
-    console.log(playerScore);
-    console.log(aiScore);
+const checkWin = function () {
+  if (playerScore === 5) {
+    elements.humanWin.classList.remove("hidden");
+  }
+  if (aiScore === 5) {
+    elements.aiWin.classList.remove("hidden");
   }
 };
 
-const paperLogic = function (random) {
-  if (playerScore < 5 && aiScore < 5) {
-    if (random === 3) {
-      aiScore++;
-      aiScore = Number((scoreAi.textContent = aiScore));
-    } else if (random === 2) {
-      return;
-    } else {
-      playerScore++;
-      Number((score.textContent = playerScore));
-    }
+const playRound = function (playerChoice) {
+  const random = getComputerChoice();
+  elements.image.src = `./images/${playerChoice}.png`;
 
-    if (playerScore === 5) {
-      humanWin.classList.remove("hidden");
-    }
-    if (aiScore === 5) {
-      aiWin.classList.remove("hidden");
-    }
+  if (playerScore >= 5 || aiScore >= 5) {
+    return;
   }
-};
 
-const scissorsLogic = function (random) {
-  if (playerScore < 5 && aiScore < 5) {
-    if (random === 3) {
-      return;
-    } else if (random === 2) {
-      playerScore++;
-      Number((score.textContent = playerScore));
-    } else {
-      aiScore++;
-      Number((scoreAi.textContent = aiScore));
-    }
-
-    if (playerScore === 5) {
-      humanWin.classList.remove("hidden");
-    }
-    if (aiScore === 5) {
-      aiWin.classList.remove("hidden");
-    }
+  if (
+    (playerChoice === "rock" && random === 3) ||
+    (playerChoice === "paper" && random === 1) ||
+    (playerChoice === "scissors" && random === 2)
+  ) {
+    playerScore++;
+  } else if (playerChoice !== "try-again") {
+    aiScore++;
   }
-};
 
-const refactored = function (logic, string) {
-  return function () {
-    const random = getComputerChoice();
-    // let choice = string;
-    console.log(`${string} was selected`);
-
-    if (string) {
-      image.src = `./images/${string}.png`;
-    }
-
-    logic(random);
-  };
+  updateScores();
+  checkWin();
 };
 
 const resetGame = function () {
   playerScore = 0;
   aiScore = 0;
-  score.textContent = 0;
-  scoreAi.textContent = 0;
-  humanWin.classList.add("hidden");
-  aiWin.classList.add("hidden");
+  elements.score.textContent = 0;
+  elements.scoreAi.textContent = 0;
+  elements.humanWin.classList.add("hidden");
+  elements.aiWin.classList.add("hidden");
+  elements.image.src = "images/paper.png";
+  elements.imageAi.src = "images/paper.png";
 };
 
-tryAgain.addEventListener("click", resetGame);
+elements.tryAgain.addEventListener("click", resetGame);
 
-rock.addEventListener("click", refactored(rockLogic, "rock"));
+elements.rock.addEventListener("click", function () {
+  playRound("rock");
+});
 
-paper.addEventListener("click", refactored(paperLogic, "paper"));
+elements.paper.addEventListener("click", function () {
+  playRound("paper");
+});
 
-scissors.addEventListener("click", refactored(scissorsLogic, "scissors"));
+elements.scissors.addEventListener("click", function () {
+  playRound("scissors");
+});
