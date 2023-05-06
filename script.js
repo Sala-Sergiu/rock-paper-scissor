@@ -1,86 +1,75 @@
-const elements = {
-  rock: document.querySelector(".rock-btn"),
-  paper: document.querySelector(".paper-btn"),
-  scissors: document.querySelector(".scissors-btn"),
-  tryAgain: document.querySelector(".try-again"),
-  score: document.querySelector(".score"),
-  scoreAi: document.querySelector(".score-ai"),
-  image: document.querySelector(".image"),
-  imageAi: document.querySelector(".image-ai"),
-  humanWin: document.querySelector(".winner-human-text"),
-  aiWin: document.querySelector(".winner-ai-text"),
-};
+const ROCK = "rock";
+const PAPER = "paper";
+const SCISSORS = "scissors";
 
-let playerScore = 0;
+const rockBtn = document.querySelector(".rock-btn");
+const paperBtn = document.querySelector(".paper-btn");
+const scissorsBtn = document.querySelector(".scissors-btn");
+const tryAgainBtn = document.querySelector(".try-again");
+
+const humanScoreEl = document.querySelector(".score");
+const aiScoreEl = document.querySelector(".score-ai");
+const humanImageEl = document.querySelector(".image");
+const aiImageEl = document.querySelector(".image-ai");
+const humanWinTextEl = document.querySelector(".winner-human-text");
+const aiWinTextEl = document.querySelector(".winner-ai-text");
+
+let humanScore = 0;
 let aiScore = 0;
 
-const getComputerChoice = function () {
-  const random = Math.floor(Math.random() * 3) + 1;
-  // 1 = rock
-  // 2 = paper
-  // 3 = scissors
-  const choice = random === 1 ? "rock" : random === 2 ? "paper" : "scissors";
-  elements.imageAi.src = `./images/${choice}-mirror.png`;
-  return random;
-};
+function resetGame() {
+  humanScore = 0;
+  aiScore = 0;
+  humanScoreEl.textContent = 0;
+  aiScoreEl.textContent = 0;
+  humanWinTextEl.classList.add("hidden");
+  aiWinTextEl.classList.add("hidden");
+  humanImageEl.src = "./images/scissors.png";
+  aiImageEl.src = "./images/scissors-mirror.png";
+}
 
-const updateScores = function () {
-  elements.score.textContent = playerScore;
-  elements.scoreAi.textContent = aiScore;
-};
-
-const checkWin = function () {
-  if (playerScore === 5) {
-    elements.humanWin.classList.remove("hidden");
+function getComputerChoice() {
+  const random = Math.trunc(Math.random() * 3) + 1;
+  switch (random) {
+    case 1:
+      aiImageEl.src = `./images/${ROCK}-mirror.png`;
+      return ROCK;
+    case 2:
+      aiImageEl.src = `./images/${PAPER}-mirror.png`;
+      return PAPER;
+    case 3:
+      aiImageEl.src = `./images/${SCISSORS}-mirror.png`;
+      return SCISSORS;
   }
-  if (aiScore === 5) {
-    elements.aiWin.classList.remove("hidden");
-  }
-};
+}
 
-const playRound = function (playerChoice) {
-  const random = getComputerChoice();
-  elements.image.src = `./images/${playerChoice}.png`;
+function handleHumanChoice(humanChoice) {
+  const aiChoice = getComputerChoice();
+  humanImageEl.src = `./images/${humanChoice}.png`;
 
-  if (playerScore >= 5 || aiScore >= 5) {
+  if (humanChoice === aiChoice) {
     return;
-  }
-
-  if (
-    (playerChoice === "rock" && random === 3) ||
-    (playerChoice === "paper" && random === 1) ||
-    (playerChoice === "scissors" && random === 2)
+  } else if (
+    (humanChoice === ROCK && aiChoice === SCISSORS) ||
+    (humanChoice === PAPER && aiChoice === ROCK) ||
+    (humanChoice === SCISSORS && aiChoice === PAPER)
   ) {
-    playerScore++;
-  } else if (playerChoice !== "try-again") {
+    humanScore++;
+  } else {
     aiScore++;
   }
 
-  updateScores();
-  checkWin();
-};
+  humanScoreEl.textContent = humanScore;
+  aiScoreEl.textContent = aiScore;
 
-const resetGame = function () {
-  playerScore = 0;
-  aiScore = 0;
-  elements.score.textContent = 0;
-  elements.scoreAi.textContent = 0;
-  elements.humanWin.classList.add("hidden");
-  elements.aiWin.classList.add("hidden");
-  elements.image.src = "images/paper.png";
-  elements.imageAi.src = "images/paper.png";
-};
+  if (humanScore === 5) {
+    humanWinTextEl.classList.remove("hidden");
+  } else if (aiScore === 5) {
+    aiWinTextEl.classList.remove("hidden");
+  }
+}
 
-elements.tryAgain.addEventListener("click", resetGame);
-
-elements.rock.addEventListener("click", function () {
-  playRound("rock");
-});
-
-elements.paper.addEventListener("click", function () {
-  playRound("paper");
-});
-
-elements.scissors.addEventListener("click", function () {
-  playRound("scissors");
-});
+rockBtn.addEventListener("click", () => handleHumanChoice(ROCK));
+paperBtn.addEventListener("click", () => handleHumanChoice(PAPER));
+scissorsBtn.addEventListener("click", () => handleHumanChoice(SCISSORS));
+tryAgainBtn.addEventListener("click", resetGame);
